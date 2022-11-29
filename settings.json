@@ -1,13 +1,7 @@
 {
   /***
-
-  2lach @ macbook-work
+  2lach @ macbook-home
   - settings.json file for VS Code editor 
-
-  Good links
-  - settings.json | https://code.visualstudio.com/docs/getstarted/settings#_default-settings
-  - colors | https://code.visualstudio.com/api/references/theme-color -> "editor.tokenColorCustomizations"
-
   ***/
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
@@ -15,7 +9,6 @@
   "editor.acceptSuggestionOnEnter": "on",
   "editor.accessibilitySupport": "off",
   "editor.cursorStyle": "line",
-  // "editor.cursorSurroundingLines": 0,
   "editor.find.cursorMoveOnType": true,
   "editor.autoClosingBrackets": "languageDefined",
   "editor.minimap.enabled": true,
@@ -38,11 +31,7 @@
     "source.fixAll.stylelint": true // Stylelint
   },
   "editor.tabSize": 2,
-  "editor.bracketPairColorization.enabled": true, /// New // testing
-  /*"editor.tokenColorCustomizations": {
-    // fix for hard to see comments (spotify theme -> oguhpereira.spotify-color-theme)
-    // "comments": "#7a7979"
-  },*/
+  "editor.bracketPairColorization.enabled": true,
   "search.exclude": {
     "**/node_modules": true,
     "**/*.code-search": true,
@@ -70,6 +59,7 @@
   "workbench.colorTheme": "Default Light+",
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
   "workbench.productIconTheme": "icons-carbon",
+
   // Custom VS Workbench colors
   "workbench.colorCustomizations": {
     "activityBarBadge.background": "#2979FF",
@@ -103,7 +93,7 @@
     "statusBar.foreground": "#434C5E",
     "statusBar.noFolderBackground": "#b0d6b0",
     "tab.activeBorder": "#2979FF",
-    "textLink.foreground": "#2979FF",
+    "textLink.foreground": "#2979FF"
   },
   "files.autoSave": "onFocusChange",
   "gitlens.codeLens.includeSingleLineSymbols": true,
@@ -136,7 +126,7 @@
   "eslint.codeActionsOnSave.mode": "problems",
   "eslint.lintTask.enable": true,
   "eslint.run": "onSave",
-  "sync.gist": "bc87ab8e59f28caec1ff9a3d17ee2f67", // MacBook Work
+  "sync.gist": "", // MacBook home
   // Formatting
   //* Prettier
   "prettier.singleQuote": true,
@@ -243,11 +233,6 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "debug.javascript.autoAttachFilter": "smart",
   "editor.inlineSuggest.enabled": true,
-  // github copilot
-  "github.copilot.enable": {
-    "*": true,
-    "markdown": false
-  },
   "update.mode": "start",
   //! Currently disabled
   // Azure AppService Debug
@@ -287,5 +272,5 @@
   "vim.statusBarColors.surroundinputmode": "#007ACC",
   "vim.incsearch": false,
   "vim.debug.loggingLevelForConsole": "warn",
-  "vim.useSystemClipboard": true,
+  "vim.useSystemClipboard": true
 }

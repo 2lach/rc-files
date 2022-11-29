@@ -10,31 +10,41 @@
 #  https://www.zsh.org/ & https://www.mankier.com/1/zsh
 #
 ################################################
-#
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+OMZ_HOME="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
+if [ ! -d "$OMZ_HOME" ]; then
+  echo "$OMZ_HOME does not exist."
+  echo "Would you like to install oh my- sh? (y)es or (n)o"
+  read yesorno
+
+if [ "$yesorno" = yes ] || [ "$yesorno" = y ]; then
+
+    sleep 2
+    echo "does zsh exists?"
+      if (hash "zsh" 2>/dev/null); then
+       echo "yes"
+      else
+        echo "no, installing zsh"
+        brew install zsh
+      fi
+    echo "installing oh my zsh"
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+if [ "$yesorno" = no ] || [ "$yesorno" = n ]; then
+    echo 'you choose no and oh my zsh will not be installed'
+else
+    echo "Not a valid answer."
+    exit 1
+fi
+
+else
+export ZSH="$OMZ_HOME"
+fi
+
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-# :ZSH Theme
 eval "$(starship init zsh)"
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
@@ -43,7 +53,7 @@ HYPHEN_INSENSITIVE="true"
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -54,19 +64,16 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # History date format
 HIST_STAMPS="mm/dd/yyyy"
@@ -133,9 +140,6 @@ fpath+=~/.zfunc
 # iterm2 shell integration
 # "${HOME}/.config/iterm2/.iterm2_shell_integration.zsh"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # fix weird green color when tabbing folders
 zstyle ':completion:*' list-colors
