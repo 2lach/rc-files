@@ -31,11 +31,11 @@ for i in "${files[@]}"; do
 		echo "sync file: $i"
 		cp "$i" "$REPO/"
 	fi
-	# verify
-
 done
 
+# verify
 succesful
+
 # add job to crontab with:
 # ===============
 # sudo crontab -e
