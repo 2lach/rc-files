@@ -1,0 +1,333 @@
+{
+  /***
+
+  2lach @ macbook-work
+  - settings.json file for VS Code editor 
+
+  Good links
+  - settings.json | https://code.visualstudio.com/docs/getstarted/settings#_default-settings
+  - colors | https://code.visualstudio.com/api/references/theme-color -> "editor.tokenColorCustomizations"
+
+  ***/
+  "editor.fontLigatures": true,
+  "editor.fontSize": 18,
+  "editor.lineHeight": 29,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.accessibilitySupport": "off",
+  "editor.cursorStyle": "line",
+  "editor.cursorSurroundingLines": 0,
+  "editor.find.cursorMoveOnType": true,
+  "editor.autoClosingBrackets": "languageDefined",
+  "editor.minimap.enabled": true,
+  "editor.fontFamily": "'Monofur Nerd Font Mono', Monaco, 'Roboto Mono for Powerline', 'Space Mono for Powerline', 'Courier New', monospace",
+  "editor.codeLens": true,
+  "editor.detectIndentation": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSaveMode": "modifications", // formats only modified lines
+  "editor.cursorBlinking": "solid",
+  "editor.cursorWidth": 2,
+  "editor.cursorSurroundingLinesStyle": "default",
+  "editor.wordWrap": "on",
+  "editor.suggestFontSize": 14,
+  "editor.suggestLineHeight": 15,
+  "editor.suggest.preview": true,
+  "editor.suggestSelection": "first",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true, // ESLint
+    "source.fixAll.tslint": true, // TSLint
+    "source.fixAll.stylelint": true // Stylelint
+  },
+  "editor.tabSize": 2,
+  "editor.bracketPairColorization.enabled": true, /// New // testing
+  /*"editor.tokenColorCustomizations": {
+    // fix for hard to see comments (spotify theme -> oguhpereira.spotify-color-theme)
+    // "comments": "#7a7979"
+  },*/
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/*.code-search": true,
+    "ios/": true,
+    "android/": true,
+    "dist/": true,
+    "build/": true,
+    "package-lock.json": true,
+    ".gitignore": true,
+    ".expo": true,
+    ".vscode": true
+  },
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": true,
+  "scm.diffDecorationsGutterAction": "diff",
+  "workbench.activityBar.visible": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.sideBar.location": "left",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.fontAliasing": "auto",
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.settings.editor": "json",
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.colorTheme": "Cyberpunk",
+  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+  "workbench.productIconTheme": "icons-carbon",
+  // Custom VS Workbench colors
+  "workbench.colorCustomizations": {
+    "activityBarBadge.background": "#2979FF",
+    "breadcrumb.activeSelectionForeground": "#2979FF",
+    "breadcrumb.focusForeground": "#2979FF",
+    "editorSuggestWidget.highlightForeground": "#2979FF",
+    "editorWidget.border": "#2979FF",
+    "editorWidget.resizeBorder": "#2979FF",
+    "errorLens.errorBackground": "#efebeb00",
+    "errorLens.hintBackground": "#fff0",
+    "errorLens.hintMessageBackground": "#fff0",
+    "errorLens.infoBackground": "#fff0",
+    "errorLens.warningMessageBackground": "#fff0",
+    "list.activeSelectionBackground": "#2979FF",
+    "list.activeSelectionForeground": "#e8fbde",
+    "list.ighlightForeground": "#2979FF",
+    "list.inactiveSelectionForeground": "#2979FF",
+    "menu.selectionForeground": "#2979FF",
+    "menubar.selectionForeground": "#2979FF",
+    "notificationLink.foreground": "#2979FF",
+    "panelTitle.activeBorder": "#2979FF",
+    "pickerGroup.foreground": "#2979FF",
+    "scrollbarSlider.activeBackground": "#2979FF50",
+    "settings.headerForeground": "#2979FF",
+    "settings.modifiedItemForeground": "#2979FF",
+    "settings.modifiedItemIndicator": "#2979FF",
+    "statusBar.background": "#b0d6b0",
+    "statusBar.debuggingBackground": "#b0d6b0",
+    "statusBar.debuggingForeground": "#434C5E",
+    "statusBar.foreground": "#434C5E",
+    "statusBar.noFolderBackground": "#b0d6b0",
+    "tab.activeBorder": "#2979FF",
+    "terminal.ansiBlack": "#242728",
+    "terminal.ansiBlue": "#47e0fb",
+    "terminal.ansiBrightBlack": "#636667",
+    "terminal.ansiBrightBlue": "#7fecff",
+    "terminal.ansiBrightCyan": "#69fcd3",
+    "terminal.ansiBrightGreen": "#deff8c",
+    "terminal.ansiBrightMagenta": "#e681ff",
+    "terminal.ansiBrightRed": "#fb58b4",
+    "terminal.ansiBrightWhite": "#f9f9f5",
+    "terminal.ansiBrightYellow": "#ebe087",
+    "terminal.ansiCyan": "#0effbb",
+    "terminal.ansiGreen": "#b6ff00",
+    "terminal.ansiMagenta": "#d731ff",
+    "terminal.ansiRed": "#ff0090",
+    "terminal.ansiWhite": "#e1e1e1",
+    "terminal.ansiYellow": "#fff727",
+    "terminal.selectionBackground": "#574c49",
+    "terminalCursor.foreground": "#c1c1c1",
+    "textLink.foreground": "#2979FF"
+  },
+  "files.autoSave": "onFocusChange",
+  // vscode Telemetry
+  "telemetry.telemetryLevel": "off", // all, error, crash, off
+  // integrated terminal
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.fontFamily": "'JetBrains Mono', 'MesloLGS NF','JuliaMono'",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.cursorStyle": "underline",
+  "terminal.integrated.cursorWidth": 3,
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.confirmOnExit": "never",
+  // Extensions
+  "better-comments.highlightPlainText": true,
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "extensions.closeExtensionDetailsOnViewChange": true,
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.debug": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  // Formatting
+  //* Prettier
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.trailingComma": "none",
+  "prettier.arrowParens": "avoid",
+  "prettier.proseWrap": "preserve",
+  "prettier.quoteProps": "as-needed",
+  "prettier.bracketSameLine": false,
+  "prettier.bracketSpacing": true,
+  "prettier.tabWidth": 2,
+  //* Markdown
+  "markdown.preview.doubleClickToSwitchToEditor": true,
+  "markdown.preview.fontFamily": "Monaco, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+  "markdown.preview.breaks": false,
+  "markdown.preview.fontSize": 11,
+  "markdown.preview.lineHeight": 1.8,
+  "[markdown]": {
+    "editor.autoIndent": "advanced"
+  },
+  //* JSON
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  //* JavaScript
+  "javascript.autoClosingTags": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
+  //* JavaScript + React
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  //* TypeScript
+  "typescript.autoClosingTags": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  //* TypeScript + React
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  //* Python
+  "[python]": {
+    // "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnSave": true
+  },
+  //* Html
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "html.format.contentUnformatted": "pre,code,textarea",
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "yaml.format.enable": true,
+  "yaml.hover": true,
+  "yaml.validate": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  // settings sync
+  "sync.gist": "bc87ab8e59f28caec1ff9a3d17ee2f67", // MacBook Work
+  "sync.quietSync": true,
+  "sync.syncExtensions": true,
+  // Gitlens 
+  "gitlens.codeLens.authors.enabled": true,
+  "gitlens.hovers.currentLine.details": true,
+  "gitlens.codeLens.includeSingleLineSymbols": true,
+  "gitlens.currentLine.format": "${author, }${date}${' via 'pullRequest}${ • message|50?}",
+  "gitlens.showWelcomeOnInstall": false,
+  "gitlens.defaultGravatarsStyle": "identicon",
+  // Shellcheck
+  "shellcheck.enable": true,
+  "shellcheck.enableQuickFix": true, // beta feature
+  "shellcheck.run": "onType",
+  "shellcheck.ignoreFileSchemes": [
+    "git",
+    "gitfs"
+  ],
+  "shellcheck.customArgs": [],
+  "shellcheck.ignorePatterns": {
+    "**/*.zsh": true,
+    "**/*.zsh*": true,
+    "**/.git/*.sh": true,
+    "**/folder/**/*.sh": true
+  },
+  // Python 
+  "python.diagnostics.sourceMapsEnabled": true,
+  "python.languageServer": "Default", // "Jedi"
+  "python.linting.pylintEnabled": true,
+  // VsCodeVim Start || Currently disabled
+  "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.normal": "block-outline",
+  "vim.cursorStylePerMode.replace": "block-outline",
+  "vim.cursorStylePerMode.visual": "block",
+  "vim.easymotionDimBackground": false,
+  "vim.highlightedyank.enable": true,
+  "vim.vimrc.path": "$HOME/.config/nvim/init.vim",
+  "vim.leader": ",",
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/usr/local/bin/nvim",
+  "vim.overrideCopy": false,
+  "vim.hlsearch": true,
+  "vim.statusBarColorControl": true,
+  "vim.statusBarColors.normal": [
+    "#b0d6b0",
+    "#434C5E"
+  ],
+  "vim.statusBarColors.insert": "#6188ad",
+  "vim.statusBarColors.visual": "#dib0d6",
+  "vim.statusBarColors.visualline": "#d6b0d6",
+  "vim.statusBarColors.visualblock": "#d6b0d6",
+  "vim.statusBarColors.replace": "#ae6060",
+  "vim.statusBarColors.commandlineinprogress": "#ebebeb",
+  "vim.statusBarColors.surroundinputmode": "#007ACC",
+  "vim.incsearch": false,
+  "vim.debug.loggingLevelForConsole": "warn",
+  "vim.useSystemClipboard": true,
+  "go.useLanguageServer": true,
+  "go.toolsManagement.autoUpdate": true,
+  // Error Lens
+  "errorLens.gutterIconsEnabled": true,
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning",
+    "info"
+    //, "hint" 
+  ],
+  "errorLens.onSave": true,
+  "errorLens.exclude": [
+    "never (read|used)"
+  ],
+  //  Android iOS Emulator
+  "emulator.emulatorPathMac": "~/Library/Android/sdk/emulator",
+  "emulator.androidColdBoot": true,
+  "window.restoreFullscreen": true,
+  "window.title": "${activeEditorShort}${separator}${rootName}",
+  "emmet.triggerExpansionOnTab": true,
+  "npm-intellisense.importES6": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.lintTask.enable": true,
+  "eslint.packageManager": "npm",
+  "eslint.run": "onSave",
+  "errorLens.messageTemplate": "$message $count",
+  "redhat.telemetry.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "debug.javascript.autoAttachFilter": "smart",
+  "shfmt.executablePath": "/usr/local/bin/shfmt",
+  "vsicons.dontShowNewVersionMessage": true,
+  "azureResourceGroups.groupBy": "resourceGroup",
+  "azureResourceGroups.deleteConfirmation": "ClickButton",
+  "azureResourceGroups.suppressActivityNotifications": false,
+  "terraform.codelens.referenceCount": true,
+  "vs-kubernetes": {
+    "vs-kubernetes.namespace": "",
+    "vs-kubernetes.kubectl-path": "",
+    "vs-kubernetes.helm-path": "",
+    "vs-kubernetes.minikube-path": "",
+    "vs-kubernetes.kubectlVersioning": "user-provided",
+    "vs-kubernetes.outputFormat": "yaml",
+    "vs-kubernetes.kubeconfig": "",
+    "vs-kubernetes.knownKubeconfigs": [],
+    "vs-kubernetes.autoCleanupOnDebugTerminate": false,
+    "vs-kubernetes.nodejs-autodetect-remote-root": true,
+    "vs-kubernetes.nodejs-remote-root": "",
+    "vs-kubernetes.nodejs-debug-port": 9229,
+    "vs-kubernetes.dotnet-vsdbg-path": "~/vsdbg/vsdbg",
+    "vs-kubernetes.local-tunnel-debug-provider": "",
+    "checkForMinikubeUpgrade": true,
+    "imageBuildTool": "Docker"
+  },
+  "yaml.trace.server": "messages",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  }
+}
