@@ -1,22 +1,17 @@
-#!/usr/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 # items to sync and there absolute paths
-USERNAME="pi"
-VIMRC="/home/$USERNAME/.vimrc"
-ZSHENV="/home/pi/.config/zsh/.zshenv"
-ZSHRC="/home/pi/.config/zsh/.zshrc"
-HTOPRC="/home/pi/.config/htop/htoprc"
-REPO="/home/pi/.config/rc-files"
-
-# INIT_NVIM="/Users/$USERNAME/.config/nvim/init.vim"
-# SETTINGS_JSON="/Users/$USERNAME/Library/Application Support/Code/User/settings.json"
-# "$INIT_VIM" "$SETTINGS_JSON")
-
+VIMRC="/data/data/com.termux/files/home/.vim/.vimrc"
+ZSHENV="/data/data/com.termux/files/home/.config/zsh/.zshenv"
+ZSHRC="/data/data/com.termux/files/home/.config/zsh/.zshrc"
+# HTOPRC="/home/pi/.config/htop/htoprc"
+REPO="/data/data/com.termux/files/home/.config/rc-files"
+USERHOME="/data/data/com.termux/files/home/"
 function succesful() {
 	# sunc succesful
-	touch /home/pi/rc-files-synced.txt
+	touch $USERHOME/rc-files-synced.txt
 	local dt=$(which date).
-	[ -x "$dt" ] && "$dt" >>"/home/pi/rc-files-synced.txt"
+	[ -x "$dt" ] && "$dt" >>"$USERHOME/rc-files-synced.txt"
 }
 
 # rc files
@@ -24,7 +19,6 @@ declare -a files=(
 	"$VIMRC"
 	"$ZSHENV"
 	"$ZSHRC"
-	"$HTOPRC"
 )
 
 for i in "${files[@]}"; do
@@ -38,13 +32,15 @@ for i in "${files[@]}"; do
 		cp "$i" "$REPO/"
 	fi
 	# verify
-	succesful
+
 done
 
+succesful
 # add job to crontab with:
 # ===============
 # sudo crontab -e
 # ===============
 # run 14:10 daily
-# 10 14 * * * /usr/local/bin/bash /Users/stefanlachmann/projects/rc-files/cron-sync.sh
+# 10 14 * * * /data/data/com.termux/files/usr/bin/bash
+# /usr/local/bin/bash /Users/stefanlachmann/projects/rc-files/cron-sync.sh /data/data/com.termux/files/home/.config/rc-files
 # ===============

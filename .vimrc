@@ -16,7 +16,7 @@ Plug 'sbdchd/neoformat'
 
 " Autocomplete
 Plug 'machakann/vim-highlightedyank'
-" Plug 'ycm-core/YouCompleteMe' " for *nix apt install build-essential cmake vim-nox python3-dev
+Plug 'ycm-core/YouCompleteMe' " for *nix apt install build-essential cmake vim-nox python3-dev
 Plug 'moll/vim-node'
 
 " Shorthand notation
@@ -78,6 +78,8 @@ set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swap
+" prefer not to use swapfile
+set noswapfile
 if exists("&undodir")
         set undodir=~/.vim/undo
 endif
@@ -172,11 +174,6 @@ if has("autocmd")
         autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
-" set cursor
-let &t_SI = "\<Esc>]50;CursorShape=2\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=2\x7"
-
 " Cursor settings:
 "  1 -> blinking block
 "  2 -> solid block
@@ -184,6 +181,11 @@ let &t_EI = "\<Esc>]50;CursorShape=2\x7"
 "  4 -> solid underscore
 "  5 -> blinking vertical bar
 "  6 -> solid vertical bar
+
+" set cursor
+let &t_SI = "\<Esc>]50;CursorShape=2\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=2\x7"
 
 " Cursor Mode Settings
 let &t_SI.="\e[6 q" "SI = INSERT mode
@@ -208,7 +210,7 @@ map <C-n> :NERDTreeToggle<CR>
 """""""""""""""""""""
 " ===  Airline ==== "
 """""""""""""""""""""
-let g:airline_theme='google_dark' " google_light papercolor
+let g:airline_theme='google_dark'
 let g:airline_extensions = []
 
 """""""""""""""""""""""""""""""
@@ -237,7 +239,12 @@ highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000087
 """""""""""""""""""""""""""
 " ===            Neoformat              === "
 """""""""""""""""""""""""""
-let g:shfmt_opt="-ci"
+let g:neoformat_zsh_shfmt = {
+                                                          \ 'exe': 'shfmt',
+                                                          \ 'args': ['-i ' . shiftwidth()],
+                                                          \ 'stdin': 1,
+                                                          \ }
+
 let g:neoformat_enabled_zsh = ['shfmt']
 
 " Only message on errors
@@ -255,10 +262,9 @@ let g:neoformat_only_msg_on_error = 1
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
 
-" format on save
 augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
+                                autocmd!
+                                autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
 """""""""""""""""""""""""""""""
