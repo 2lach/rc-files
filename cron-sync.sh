@@ -26,7 +26,6 @@ declare -a files=(
 	"$ZSHRC"
 	"$HTOPRC"
 )
-
 for i in "${files[@]}"; do
 	# verify file path
 	if [ ! -f "$i" ]; then
@@ -37,9 +36,10 @@ for i in "${files[@]}"; do
 		echo "sync file: $i"
 		cp "$i" "$REPO/"
 	fi
-	# verify
-	succesful
 done
+
+# verify
+succesful
 
 # add job to crontab with:
 # ===============
