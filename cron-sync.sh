@@ -34,7 +34,7 @@ for i in "${files[@]}"; do
 done
 
 # verify
-succesful
+# succesful
 
 # add job to crontab with:
 # ===============

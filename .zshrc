@@ -4,20 +4,28 @@
 
 # ZSH Theme
 eval "$(starship init zsh)"
+
 # makes - and _ interchangable
 HYPHEN_INSENSITIVE="true"
+
 # Dont ask about omz update
 DISABLE_UPDATE_PROMPT="true"
+
 # auto update
 export UPDATE_ZSH_DAYS=400
+
 # show dots while processing
 COMPLETION_WAITING_DOTS="true"
+
 # speed up git when repo is large
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+
 # do not save duplicates in zsh history
 setopt hist_ignore_all_dups
+
 # how date in history is showed
 HIST_STAMPS="mm/dd/yyyy"
+
 # where is keep my custom stuff/scripts
 ZSH_CUSTOM="$HOME/z-stuff"
 
@@ -25,8 +33,10 @@ zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-
 
 # omz plugins
 plugins=(
+        alias-tips
         cod
         common-aliases
+        fd
         gh
         git-extras
         web-search
