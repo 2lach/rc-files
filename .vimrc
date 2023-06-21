@@ -103,9 +103,6 @@ set number
 " use mouse
 set mouse=a
 
-" Enable syntax highlighting
-syntax on
-
 " Highlight current line
 set cursorline
 
