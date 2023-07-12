@@ -38,8 +38,8 @@ for i in "${files[@]}"; do
 	fi
 done
 
-# verify
-succesful
+# verifed
+# succesful
 
 # add job to crontab with:
 # ===============

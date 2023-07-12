@@ -18,6 +18,7 @@ export ZSH_COMPDUMP="$HOME/.config/zsh/.zcompdump"
 # GO path
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
+export GOCACHE=$GOPATH/.cache
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GO111MODULE=on
 
