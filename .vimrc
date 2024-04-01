@@ -12,7 +12,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Format
-Plug 'sbdchd/neoformat'
+" #Plug 'sbdchd/neoformat'
 
 " Autocomplete
 Plug 'machakann/vim-highlightedyank'
@@ -256,9 +256,9 @@ let g:neoformat_only_msg_on_error = 1
 let g:neoformat_basic_format_trim = 1
 
 " format on save
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+" augroup fmt
+ " autocmd!
+  "autocmd BufWritePre * undojoin | Neoformat
+"augroup END
 
 """""""""""""""""""""""""""""""

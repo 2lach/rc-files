@@ -2,9 +2,9 @@
 
 # ZSH_THEME_RANDOM_CANDIDATES=("af-magic" "sorin" "refined" "gallifrey")
 
-ZSH_THEME_RANDOM_CANDIDATES=("af-magic" "sorin" "refined" "refined")
+ZSH_THEME_RANDOM_CANDIDATES=("af-magic" "sorin" "refined") 
+
 ZSH_THEME=random
-# CASE_SENSITIVE="true"
 
 HYPHEN_INSENSITIVE="true"
 
@@ -62,12 +62,12 @@ ZSH_CUSTOM="$HOME/z-stuff/custom"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z gh command-not-found)
+plugins=(git z gh command-not-found nmap)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export MANPATH="/usr/local/man:$MANPATH"
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
