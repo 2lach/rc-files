@@ -4,12 +4,9 @@
 " 	@2lach 
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
-" either add plugins here or:
-" source ~/.config/nvim/plugins.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins (using vim-plug)
+source ~/.config/nvim/plugins.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 " setup directories
 """""""""""""""""""
 
@@ -17,7 +14,8 @@ silent !mkdir -p ~/.config/nvim/_backup ~/.config/nvim/_temp ~/.config/nvim/_und
 set backupdir=~/.config/nvim/_backup    " where to put backup files
 set directory=~/.config/nvim/_temp      " where to put swap files
 set undodir=~/.config/nvim/_undo        " where to save undo histories
-set viminfo+=n~/.config/nvim/viminfo		" keep viminfo file in .nvim dir
+" keep viminfo file in .vim dir
+set viminfo+=n~/.config/nvim/viminfo
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -26,10 +24,10 @@ set viminfo+=n~/.config/nvim/viminfo		" keep viminfo file in .nvim dir
 """"""""""
 
 set clipboard+=unnamedplus              " use system clipboard
-set shortmess=at                        " Abbr mess +truncate when necessary
+" set shortmess=at                        " Abbr mess +truncate when necessary
 set encoding=utf-8 nobomb               " Use UTF-8 without BOM
 
-set number															" show line numbers
+set number
 set rnu                                 " set relative number
 set ruler                               " show ruler
 set cursorline                          " Highlight cursorline
@@ -55,11 +53,11 @@ set undoreload=10000                    " number of lines to save for undo
 set cmdheight=2                         " commandline window
 
 "Tab in cmdline shows menu with buffers and filenames
-" set wildchar=<Tab> wildmenu wildmode=full
+" set wildchar=<Tab> wildmenu :wwildmode=full
 set laststatus=2                        " Always show status line
 set showmode                            " Show the current mode
 
-if has('mouse')                         " enable mouse if it exists
+if has('mouse')                         " enable mouse 
 	set mouse=a
 endif
 
@@ -77,10 +75,10 @@ set title                                " Show the filename in the window title
 if (has("termguicolors"))
 	set termguicolors
 endif
-
-
-" colorscheme molotov | needs to be installed
-colorscheme desert 		" acceptable default
+colorscheme molotov
+" colorscheme seoul256
+" colorscheme OceanicNext 
+" colorscheme dracula
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -91,17 +89,114 @@ colorscheme desert 		" acceptable default
 set splitright
 set splitbelow
 
-" binary paths // get it with $(which <binary>)
-let g:python3 = '/usr/local/bin/python3'
-let g:python3_host_prog = '/usr/local/bin/python3'
+" debug bode issues
+" let g:node_client_debug = 1
+
+" disable perl from loading
+let g:loaded_perl_provider=0
+" python paths
+let g:python_host_prog='/opt/homebrew/bin/python3'
 let g:ruby_host_prog='/usr/bin/ruby'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""
+" === Neoformat === "
+"""""""""""""""""""""
+let g:neoformat_try_formatprg = 1
+
+" Have Neoformat only msg when there is an error
+let g:neoformat_only_msg_on_error = 1
+" Run all enabled formatters (by default Neoformat stops after the first formatter succeeds)
+"let g:neoformat_run_all_formatters = 1
+
+" enable shellformat
+let g:shfmt_opt="-ci"
+
+" xml
+let g:neoformat_xml_tidy = {
+	\ 'exe': 'tidy',
+	\ 'args': ['-quiet',
+	\          '-xml',
+	\          '--indent auto',
+	\          '--indent-spaces ' . shiftwidth(),
+	\          '--vertical-space yes',
+	\          '--tidy-mark no',
+	\          '--wrap -1'
+	\         ],
+	\ 'stdin': 1,
+	\ }
+
+" format  on save with cpc.nvim + coc-prettier 
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
+augroup fmt
+	autocmd!
+	autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
+"""""""""""""""""""""
+" === Undo tree === "
+"""""""""""""""""""""
+nnoremap <C-u> :MundoToggle<CR>
+let g:mundo_width = 40
+" let g:mundo_preview_height = 40
+let g:mundo_right = 1
+
+"""""""""""""""""""""""
+" === Vim airline === "
+"""""""""""""""""""""""
+" show tabline 
+let g:airline#extensions#tabline#enabled = 1            " show open tabs
+let g:airline#extensions#coc#enabled = 1                " show coc diagnostics
+
+let w:airline_skip_empty_sections = 0
+let g:airline_theme = 'oceanicnext'
+let g:airline#extensions#branch#format = 0
+
+"""""""""""""""""""""""""""""""
+" === vim-highlightedyank === "
+"""""""""""""""""""""""""""""""
+if !exists('##TextYankPost')
+	map Y <Plug>(highlightedyank)
+	map y <Plug>(highlightedyank)
+endif
+
+let g:highlightedyank_highlight_duration = 550
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins settings
-""""""""""""""""""
-" either add plugin-settings here or:
-" source ~/.config/nvim/plugins-settings.vim
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Keymaps / Keybindings 
+"""""""""""""""""""""""
+
+let mapleader = ','
+
+" Yank to end of line
+nnoremap Y y$
+
+" Cut to eol
+nnoremap C c$
+
+" Delete to eol
+nnoremap D d$
+
+" save current file
+nmap <space>w :write<CR>
+" source current file
+nmap <space>s :source %<CR>
+
+" exit search hightlight
+noremap <space><space> :set hlsearch! hlsearch?<cr> 
+
+" Ctrl + x/z move between Buffers prev/next
+nnoremap<C-x> :bnext<CR>
+nnoremap <C-z> :bprev<CR>
+
+" use Alt + (←/↑/↓/→) to navigate windows
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -109,7 +204,7 @@ let g:ruby_host_prog='/usr/bin/ruby'
 " Fixes & autocmds 
 """""""""""""""""""
 
-" Reload icons after init source | requires plugin webdevicons
+" Reload icons after init source
 if exists('g:loaded_webdevicons')
 	call webdevicons#refresh()
 endif
@@ -120,4 +215,12 @@ au VimLeave * set guicursor=a:hor250-blinkon1
 " save all files when focus is lost without warnings
 augroup configgroup
 	autocmd!
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins settings
+source ~/.config/nvim/plugin-settings.vim

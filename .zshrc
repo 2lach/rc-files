@@ -1,146 +1,130 @@
 #!/bin/zsh
-# zmodload zsh/zprof # start zsh profiling
-################################################
-#
-# Resources:
-#  https://grml.org/zsh/zsh-lovers.html : tips and tricks
-#
-#  https://linux.die.net/man/1/zshbuiltins : zshbuiltins
-#
-#  https://www.zsh.org/ & https://www.mankier.com/1/zsh
-#
-################################################
-#
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# uncomment to debug zsh startup
+# zmodload zsh/zprof
+## -----------------------------.
+
+# setup paths and stuff
+. ~/zsh/paths
+
+## HISTFILE
+HISTFILE=~/.config/zsh/.zsh_history
+HISTSIZE=20000000
+SAVEHIST=15000000
+## append history
+setopt INC_APPEND_HISTORY
+## share history
+setopt sharehistory
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-# :ZSH Theme
-eval "$(starship init zsh)"
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Use starship prompt
+eval "$(starship init zsh)"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
+zstyle ':omz:update' mode reminder # just remind me to update when it's time
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' frequency 30
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# see 'man strftime' for details.
+HIST_STAMPS="dd.mm.yyyy"
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+## Uncomment the following line to disable auto-setting terminal title.
+DISABLE_AUTO_TITLE="false"
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+	# use vim when ssh:ing
+	export EDITOR='vim'
+else
+	export EDITOR='nvim'
+fi
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+# custom folder than $ZSH/custom? default path is ~/.oh-my-zsh/custom
+ZSH_CUSTOM=~/zsh/customs
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# History date format
-HIST_STAMPS="mm/dd/yyyy"
-
-# where is keep my custom stuff/scripts
-ZSH_CUSTOM="$HOME/z-stuff"
-
-# omz plugins
-plugins=(git-extras web-search z zsh-syntax-highlighting gh)
+plugins=(
+	zsh-async
+	alias-tips
+	# azure-subscription-prompt
+	command-not-found
+	fnm
+	git-extras
+	web-search
+	z
+	zsh-autosuggestions
+	fast-syntax-highlighting
+	zsh-completions
+	cod
+)
 
 source $ZSH/oh-my-zsh.sh
 
-# where i source my local/custom stuff/scripts
-source $ZSH_CUSTOM/zsh.local
-
-# zsh options
-export HISTFILE=~/.config/zsh/.zsh_history
-# ----------------------------------------------
-# perform the cd command to dir without 'cd'
-setopt AUTO_CD
-# Don’t push multiple copies of the same directory onto the directory stack.
-setopt PUSHD_IGNORE_DUPS
-setopt EXTENDEDGLOB
 # User configuration
-setopt appendhistory          # Append don't create new
-setopt BANG_HIST              # Treat the '!' character specially during expansion.
-setopt EXTENDED_HISTORY       # Write the history file in the ":start:elapsed;command" format.
-setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY          # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS       # Don't record an entry that was just recorded again.
-setopt HIST_SAVE_NO_DUPS      # Don't write duplicate entries in the history file.
-setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY            # Don't execute immediately upon history expansion.
+## my functions, aliases and whatnots
+# source $HOME/zsh/kube-commands
+source $HOME/zsh/aliases
+source $HOME/zsh/az.zsh
+source $HOME/zsh/docker-functions
+source $HOME/zsh/functions
+source $HOME/zsh/cafanistan
+source $HOME/zsh/osx-scripts
+source $HOME/zsh/.secrets
+source $HOME/zsh/starship-theme-selector.sh
+export MANPATH="/usr/local/man:$MANPATH"
 
-HISTSIZE=10000000
-SAVEHIST=10000000
-# note* if 'History' breaks it can be hacked/reseted by adding
-# "fc -p /path/to/new_history" at the end zshrc
+## fnm
+export PATH="/Users/stefan/Library/Application Support/fnm:$PATH"
+eval "$(fnm env --use-on-cd)"
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
-# GPG
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
-export GPG_TTY=$(tty)
-gpg-connect-agent -q updatestartuptty /bye >/dev/null
+## azure subscriptopm prompt, show current subscription
+# autoload -U colors
+# RPROMPT='%{$fg[blue]%}ﴃ $ZSH_SUBSCRIPTION_PROMPT%{$reset_color%}'
 
-# Preferred editor for local and remote sessions
-# editor
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
+# Homebrew command-not-found
+HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+if [ -f "$HB_CNF_HANDLER" ]; then
+	source "$HB_CNF_HANDLER"
 fi
 
-# zsh completions path (also some brew stuff)
-fpath=(/usr/local/share/zsh-completions $fpath)
-fpath+=~/.zfunc
+## iterm shell integrations
+[ -f ~/.config/.iterm2_shell_integration.zsh ] && source ~/.config/.iterm2_shell_integration.zsh
 
-# iterm2 shell integration
-# "${HOME}/.config/iterm2/.iterm2_shell_integration.zsh"
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+## fzf shell integration
+[ -f ~/.config/.fzf.zsh ] && source ~/.config/.fzf.zsh
+# zsh
+eval "$(fzf --zsh)"
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# show all completions after first tab
+bindkey '\t' menu-complete
 
-# fix weird green color when tabbing folders
-zstyle ':completion:*' list-colors
-# ----------------------------------------------
-# uncomment to finish profiling
+## partial completion suggestions
+zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/stefan/.config/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/stefan/.config/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/stefan/.config/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/stefan/.config/google-cloud-sdk/completion.zsh.inc'; fi
+
+# fuck you omz forcing me to use weird grep
+unalias grep
+
+# check startup time
+#function zsh_startup_time() {
+#	time zsh -i -c exit
+#}
+
+## uncomment to debug zsh startup
+# -----------------------------.
 # zprof
-#  End of zshrc #
-################################################
