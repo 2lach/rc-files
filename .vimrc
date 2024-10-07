@@ -24,6 +24,8 @@ Plug 'junegunn/vim-easy-align'
 
 " Vim filetree           | Lazyload
 Plug 'preservim/nerdtree',{ 'on':'NERDTreeToggle' }
+
+Plug 'junegunn/limelight.vim'
 " Initialize plugin system
 call plug#end()
 
