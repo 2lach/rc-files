@@ -38,7 +38,6 @@ if has("syntax")
   syntax on
 endif
 
-
 syntax enable
 colorscheme molotov
 "evening dracula snazzy ron

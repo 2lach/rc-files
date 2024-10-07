@@ -86,7 +86,6 @@ fi
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 
 # my aliases n fns
-
 source "$ZSH_CUSTOM/scripts/.functions"
 source "$ZSH_CUSTOM/scripts/.docker-functions"
 source "$ZSH_CUSTOM/scripts/.aliases"
