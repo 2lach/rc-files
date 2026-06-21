@@ -22,6 +22,9 @@ export GOCACHE=$GOPATH/.cache
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GO111MODULE=on
 
+# source rust
+. "$HOME/.cargo/env"
+
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 #export LIBVA_DRIVER_NAME=i965
 export LC_ALL="en_GB.UTF-8"
@@ -31,3 +34,4 @@ export LC_MESSAGES="en_GB.UTF-8"
 #
 # gpg key
 export GPG_TTY=$(tty)
+. "$HOME/.cargo/env"

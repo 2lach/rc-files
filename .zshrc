@@ -1,8 +1,6 @@
 #!/usr/bin/zsh
 
-# ZSH_THEME_RANDOM_CANDIDATES=("af-magic" "sorin" "refined" "gallifrey")
-
-ZSH_THEME_RANDOM_CANDIDATES=("af-magic" "sorin" "refined") 
+ZSH_THEME_RANDOM_CANDIDATES=("af-magic" "sorin" "refined")
 
 ZSH_THEME=random
 
@@ -35,8 +33,6 @@ zstyle ':omz:update' mode auto # update automatically without asking
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
@@ -57,12 +53,15 @@ HIST_STAMPS="dd.mm.yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="$HOME/z-stuff/custom"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git z gh command-not-found nmap)
+plugins=(
+	command-not-found
+#	fzf-tab
+	gh
+	git
+	nmap
+	uv
+	z
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,12 +78,6 @@ else
 	export EDITOR='vim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-
 # my aliases n fns
 source "$ZSH_CUSTOM/scripts/.functions"
 source "$ZSH_CUSTOM/scripts/.docker-functions"
@@ -92,17 +85,15 @@ source "$ZSH_CUSTOM/scripts/.aliases"
 source "$ZSH_CUSTOM/scripts/network-scan.sh"
 source "$HOME/z-stuff/zsh.local"
 
-# custom plugins
-source "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
 # competion daemon
 source "$ZSH_CUSTOM/plugins/cod/cod.plugin.zsh"
 
-# fix weird green shit when tabbing folders
+# fix weird green shit when tabbing dirs
 zstyle ':completion:*' list-colors
 
 function kill-nuts-log() {
 	sudo systemctl stop nut-monitor.service
 }
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+
+# custom plugins this should always be loaded last according to their docs
+source "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

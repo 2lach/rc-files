@@ -18,6 +18,7 @@ Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-highlightedyank'
 " Plug 'ycm-core/YouCompleteMe' " for *nix apt install build-essential cmake vim-nox python3-dev
 Plug 'moll/vim-node'
+Plug 'dense-analysis/ale'
 
 " Shorthand notation
 Plug 'junegunn/vim-easy-align'
@@ -209,6 +210,7 @@ map <C-n> :NERDTreeToggle<CR>
 """""""""""""""""""""
 let g:airline_theme='google_dark' " google_light papercolor
 let g:airline_extensions = []
+let g:airline#extensions#ale#enabled = 1
 
 """""""""""""""""""""""""""""""
 " === vim-highlightedyank === "
@@ -221,43 +223,45 @@ endif
 let g:highlightedyank_highlight_duration = 450
 
 """"""""""""""""""""""""""""
-" === YOU COMPLETE ME  === "
+" === ALE === "
 """"""""""""""""""""""""""""
-" change colors in ycm popup window
-highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000087
 
-" color charts for vim:
-" http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+let g:ale_fixers = {
+\   'astro': ['prettier'],
+\   'css': ['prettier'],
+\   'javascript': ['prettier'],
+\   'javascriptreact': ['prettier'],
+\   'json': ['prettier'],
+\   'python': ['black', 'isort'],
+\   'sh': ['shellcheck'],
+\   'yaml': ['yamllint'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
 
-" from:
-" https://github.com/2lach/dotfiles-version-1/blob/master/linux/.vimrc
-"-----
-"
-"""""""""""""""""""""""""""
-" ===            Neoformat              === "
-"""""""""""""""""""""""""""
-let g:shfmt_opt="-ci"
-let g:neoformat_enabled_zsh = ['shfmt']
+" Fix on save
+let g:ale_fix_on_save = 1
 
-" Only message on errors
-let g:neoformat_only_msg_on_error = 1
+" Fix on save
+let g:ale_fix_on_save = 1
 
-"Have Neoformat use &formatprg as a formatter
-" let g:neoformat_try_formatprg = 1
+" Disable whitespace warnings
+" let g:ale_warn_about_trailing_whitespace = 0
 
-" Enable alignment
-" let g:neoformat_basic_format_align = 1
+" list current file config with
+" :ALEInfo
 
-" Enable tab to spaces conversion
-" let g:neoformat_basic_format_retab = 1
+" Set this in your vimrc file to disabling highlighting
+" let g:ale_set_highlights = 0
 
-" Enable trimmming of trailing whitespace
-let g:neoformat_basic_format_trim = 1
+" The quickfix list can be enabled by turning the g:ale_set_quickfix option on. If you wish to also disable the loclist, you can disable the g:ale_set_loclist option.
+" let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
 
-" format on save
-" augroup fmt
- " autocmd!
-  "autocmd BufWritePre * undojoin | Neoformat
-"augroup END
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_insert_leave = 0
+
+" You can disable this option too
+" if you don't want linters to run on opening a file
+" let g:ale_lint_on_enter = 0
 
 """""""""""""""""""""""""""""""
